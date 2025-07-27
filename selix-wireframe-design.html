@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SellScale - AI Sales Agent Wireframe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8fafc;
+        }
+        
+        .wireframe-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 2px solid #e2e8f0;
+            background: #ffffff;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2d3748;
+        }
+        
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-item {
+            padding: 8px 0;
+            color: #4a5568;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item:hover {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            padding: 80px 40px;
+            align-items: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-content .subtitle {
+            font-size: 1.3rem;
+            color: #718096;
+            margin-bottom: 30px;
+        }
+        
+        .hero-content .description {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 40px;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .primary-cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .primary-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .secondary-cta {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Chat Interface */
+        .chat-demo {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 30px;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .chat-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .ai-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .chat-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+        }
+        
+        .chat-status {
+            font-size: 0.9rem;
+            color: #48bb78;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #48bb78;
+            border-radius: 50%;
+        }
+        
+        .chat-messages {
+            height: 350px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .message.user {
+            flex-direction: row-reverse;
+        }
+        
+        .message-bubble {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+        }
+        
+        .message.ai .message-bubble {
+            background: #667eea;
+            color: white;
+        }
+        
+        .message.user .message-bubble {
+            background: #e2e8f0;
+            color: #2d3748;
+        }
+        
+        .chat-input {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 25px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        .chat-input input:focus {
+            border-color: #667eea;
+        }
+        
+        .send-button {
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 40px;
+            background: white;
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+        
+        .features-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #718096;
+            margin-bottom: 60px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .feature-card {
+            padding: 30px;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            color: #718096;
+            line-height: 1.6;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 40px;
+            background: #f7fafc;
+        }
+        
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 60px;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+        
+        .step h3 {
+            font-size: 1.3rem;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+        
+        .step p {
+            color: #718096;
+            line-height: 1.6;
+        }
+        
+        /* Social Proof */
+        .social-proof {
+            padding: 80px 40px;
+            background: white;
+            text-align: center;
+        }
+        
+        .social-proof h2 {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 40px;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .stat {
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: #718096;
+            font-size: 1.1rem;
+        }
+        
+        /* CTA Section */
+        .final-cta {
+            padding: 80px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .final-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .final-cta button {
+            background: white;
+            color: #667eea;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .final-cta button:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 40px;
+            background: #2d3748;
+            color: white;
+            text-align: center;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 40px 20px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .chat-demo {
+                height: 400px;
+            }
+            
+            .features, .how-it-works, .social-proof, .final-cta {
+                padding: 60px 20px;
+            }
+        }
+        
+        /* Animation for chat demo */
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        .typing-animation {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 3s steps(40, end);
+        }
+    </style>
+</head>
+<body>
+    <div class="wireframe-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">SellScale</div>
+            <nav class="nav">
+                <a href="#" class="nav-item">Platform</a>
+                <a href="#" class="nav-item">Solutions</a>
+                <a href="#" class="nav-item">Pricing</a>
+                <a href="#" class="nav-item">Resources</a>
+            </nav>
+            <button class="cta-button">Get Started</button>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Your AI Sales Agent That Actually Works</h1>
+                <p class="subtitle">Just tell it what you want. Selix handles the rest.</p>
+                <p class="description">
+                    Stop managing campaigns. Start having conversations. Our AI agent builds lists, writes copy, 
+                    and executes outreach while you focus on closing deals.
+                </p>
+                <div class="hero-cta">
+                    <button class="primary-cta" onclick="startChatDemo()">Talk to Selix Now</button>
+                    <a href="#" class="secondary-cta">
+                        Watch Demo →
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Interactive Chat Demo -->
+            <div class="chat-demo">
+                <div class="chat-header">
+                    <div class="ai-avatar">S</div>
+                    <div>
+                        <div class="chat-title">Selix AI Agent</div>
+                        <div class="chat-status">
+                            <span class="status-dot"></span>
+                            Online & Ready
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message ai">
+                        <div class="message-bubble">
+                            Hi! I'm Selix, your AI sales agent. What kind of outreach campaign would you like to run?
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="Try: 'I want to book demos with SaaS CTOs'" 
+                           onkeypress="handleEnter(event)">
+                    <button class="send-button" onclick="sendMessage()">→</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <h2>How Selix Changes Everything</h2>
+            <p class="features-subtitle">From campaign management to conversation</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Just Tell It What You Want</h3>
+                    <p>No more spreadsheets or complex setup. Simply describe your goal and Selix figures out the rest.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Intelligent List Building</h3>
+                    <p>Selix finds and verifies prospects automatically, using 40+ data sources and AI matching.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">✍️</div>
+                    <h3>AI-Powered Personalization</h3>
+                    <p>Every email is crafted specifically for each prospect using real-time research and proven patterns.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Complete Campaign Execution</h3>
+                    <p>From domain setup to follow-up sequences, Selix handles every technical detail automatically.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Network Intelligence</h3>
+                    <p>Benefit from collective learnings across our customer base - your campaigns get smarter every day.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Continuous Optimization</h3>
+                    <p>Selix learns from results and automatically adjusts strategy to improve performance over time.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="how-it-works">
+            <h2>Simple as Having a Conversation</h2>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Describe Your Goal</h3>
+                    <p>"I want to book 20 demos with Series A startup CTOs this month"</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Selix Builds & Executes</h3>
+                    <p>AI finds prospects, crafts personalized messages, and launches campaigns automatically</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>You Close Deals</h3>
+                    <p>Focus on conversations with qualified leads while Selix handles the heavy lifting</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof -->
+        <section class="social-proof">
+            <h2>Trusted by Growing Companies</h2>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">150%</div>
+                    <div class="stat-label">Average Response Rate Improvement</div>
+                </div>
+                
+                <div class="stat">
+                    <div class="stat-number">10M+</div>
+                    <div class="stat-label">Emails Sent Successfully</div>
+                </div>
+                
+                <div class="stat">
+                    <div class="stat-number">90%</div>
+                    <div class="stat-label">Time Saved on Campaign Setup</div>
+                </div>
+                
+                <div class="stat">
+                    <div class="stat-number">24h</div>
+                    <div class="stat-label">Average Time to First Campaign</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta">
+            <h2>Ready to Transform Your Outreach?</h2>
+            <p>Join hundreds of companies using AI to scale their sales without scaling headaches.</p>
+            <button onclick="startTrial()">Start Free Trial</button>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 SellScale. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        
+        const demoResponses = {
+            'saas ctos': {
+                response: "Perfect! I'll help you reach SaaS CTOs. Let me build a campaign targeting CTOs at Series A-C companies with 50-500 employees. I'll research their current tech stack and pain points for personalization.",
+                followUp: "I found 2,847 SaaS CTOs matching your criteria. Should I focus on specific verticals like fintech, healthcare, or keep it broad?"
+            },
+            'book demos': {
+                response: "Great goal! I'll create a demo-focused campaign. I'll craft messages highlighting specific ROI outcomes and include calendar links for easy booking.",
+                followUp: "What's your main value proposition? I'll research each prospect's current challenges and personalize accordingly."
+            },
+            'lead generation': {
+                response: "I'll set up a comprehensive lead generation campaign! I'll build targeted lists, create personalized outreach sequences, and set up tracking for qualified leads.",
+                followUp: "What's your ideal customer profile? The more specific you are, the better I can target the right prospects."
+            },
+            'default': {
+                response: "I can help you with that! I'll research your target audience, build verified prospect lists, and create personalized campaigns that actually get responses.",
+                followUp: "Tell me more about your ideal customer - what industry, company size, or role should I target?"
+            }
+        };
+        
+        function getResponse(input) {
+            const lowerInput = input.toLowerCase();
+            if (lowerInput.includes('cto') || lowerInput.includes('saas')) {
+                return demoResponses['saas ctos'];
+            } else if (lowerInput.includes('demo') || lowerInput.includes('meeting')) {
+                return demoResponses['book demos'];
+            } else if (lowerInput.includes('lead') || lowerInput.includes('prospect')) {
+                return demoResponses['lead generation'];
+            } else {
+                return demoResponses['default'];
+            }
+        }
+        
+        function addMessage(text, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : 'ai'}`;
+            messageDiv.innerHTML = `<div class="message-bubble">${text}</div>`;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function sendMessage() {
+            const input = chatInput.value.trim();
+            if (!input) return;
+            
+            addMessage(input, true);
+            chatInput.value = '';
+            
+            // Simulate AI thinking
+            setTimeout(() => {
+                const response = getResponse(input);
+                addMessage(response.response);
+                
+                // Add follow-up question
+                setTimeout(() => {
+                    addMessage(response.followUp);
+                }, 2000);
+            }, 1000);
+        }
+        
+        function handleEnter(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+        
+        function startChatDemo() {
+            chatInput.focus();
+            chatInput.placeholder = "Try: 'I want to book demos with SaaS CTOs'";
+        }
+        
+        function startTrial() {
+            alert('Trial signup would redirect to onboarding flow');
+        }
+        
+        // Auto-demo on page load
+        setTimeout(() => {
+            addMessage("👋 Want to see how this works? Try typing a campaign goal above!");
+        }, 2000);
+    </script>
+</body>
+</html>
